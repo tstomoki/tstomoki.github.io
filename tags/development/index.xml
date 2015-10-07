@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tstomoki </title>
+    <link>http://tstomoki.github.io/tags/development/</link>
+    <language>en-us</language>
+    <author>Tomoki Saito</author>
+    <rights>(C) 2015</rights>
+    <updated>2015-10-07 20:47:04 &#43;0900 JST</updated>
+
+    
+      
+        <item>
+          <title>なんとなくportfolioみたいなのが欲しかったので、GitHub Pages&#43;Hugo&#43;CircleCIでBlog公開してみた</title>
+          <link>http://tstomoki.github.io/blog/create-blog-with-hugo-and-circleci</link>
+          <pubDate>Wed, 07 Oct 2015 20:47:04 JST</pubDate>
+          <author>Tomoki Saito</author>
+          <guid>http://tstomoki.github.io/blog/create-blog-with-hugo-and-circleci</guid>
+          <description>&lt;p&gt;主にportfolioが欲しかったという目的でこのページを作ってみた。&lt;/p&gt;
+
+&lt;p&gt;自分のサイトが欲しいとは前々から思っていたけど、ドメイン取るのとかサーバ環境構築とかめんどくさかった。&lt;/p&gt;
+
+&lt;p&gt;そのタイミングでGithubでタダでページ作るってなっていたので作ってみました。&lt;/p&gt;
+
+&lt;p&gt;基本的に、Hugo で静的サイト出力して、Github Pagesに反映するときにCircle CI使ってる感じ。&lt;/p&gt;
+
+&lt;p&gt;参照先は&lt;a href=&#34;http://tbd.kaitoy.xyz/2015/08/28/using-hugo/&#34;&gt;ここ&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;画像を挿入するときに色々templateを弄ってしまったけどこれであってるのだろうか…。&lt;/p&gt;
+
+&lt;p&gt;まぁ、今後困ったら調整していく感じでいいか。&lt;/p&gt;
+
+&lt;p&gt;ということで、Github Pagesいいすね！&lt;/p&gt;
+
+&lt;p&gt;pushするだけで記事を更新出来るところがエンジニアっぽい！&lt;/p&gt;
+
+&lt;p&gt;とりあえず、記事を作成して更新するコマンドをメモ代わりに書いときます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ hugo new post/article-title.md
+...(記事編集)
+$ hugo undraft content/post/article-title.md
+$ hugo -d pages
+$ cd pages
+$ git add .
+$ git commit -m &amp;quot;commit message&amp;quot;
+$ git push origin master
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+        </item>
+      
+    
+
+  </channel>
+</rss>
