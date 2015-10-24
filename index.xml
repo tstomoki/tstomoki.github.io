@@ -6,8 +6,104 @@
     <language>en-us</language>
     <author>Tomoki Saito</author>
     <rights>(C) 2015</rights>
-    <updated>2015-10-07 21:05:31 &#43;0900 JST</updated>
+    <updated>2015-10-25 01:51:55 &#43;0900 JST</updated>
 
+    
+      
+        <item>
+          <title>任意のGmailアカウントから大量のメールを送るスクリプトをPythonで書いてみた</title>
+          <link>http://tstomoki.github.io/blog/%E4%BB%BB%E6%84%8F%E3%81%AEgmail%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%8B%E3%82%89%E5%A4%A7%E9%87%8F%E3%81%AE%E3%83%A1%E3%83%BC%E3%83%AB%E3%82%92%E9%80%81%E3%82%8B%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88%E3%82%92python%E3%81%A7%E6%9B%B8%E3%81%84%E3%81%A6%E3%81%BF%E3%81%9F</link>
+          <pubDate>Sun, 25 Oct 2015 01:51:55 JST</pubDate>
+          <author>Tomoki Saito</author>
+          <guid>http://tstomoki.github.io/blog/%E4%BB%BB%E6%84%8F%E3%81%AEgmail%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%8B%E3%82%89%E5%A4%A7%E9%87%8F%E3%81%AE%E3%83%A1%E3%83%BC%E3%83%AB%E3%82%92%E9%80%81%E3%82%8B%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88%E3%82%92python%E3%81%A7%E6%9B%B8%E3%81%84%E3%81%A6%E3%81%BF%E3%81%9F</guid>
+          <description>&lt;p&gt;イベントの参加者にリマインドを送るときに少し大変だったのでスクリプト書いたときのお話。&lt;/p&gt;
+
+&lt;p&gt;イベントの予約内容によってコンテントが少し変わるところがめんどくさかった。&lt;/p&gt;
+
+&lt;p&gt;まず、GmailのSMTPサーバに&lt;a href=&#34;http://docs.python.jp/2/library/smtplib.html&#34;&gt;smtplib&lt;/a&gt;を使ってログインできるらしいので、その機能を使ってメールを送信する。&lt;/p&gt;
+
+&lt;p&gt;その辺の実装は、&lt;a href=&#34;http://make.bcde.jp/category/23/&#34;&gt;この辺&lt;/a&gt;を見ながらやってみたら上手くいった。とりあえず、添付ファイルとかは基本的になかったので、MIMEとかは後回し。
+今後需要があれば考慮していく感じで。&lt;/p&gt;
+
+&lt;p&gt;メールの内容については、こんな感じのcsvファイルを作成して、予約内容毎に&lt;code&gt;Boolean&lt;/code&gt;でcontentsを指定するようにした。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;id,name,name_kana,mail,company,1,2,3,4,5
+1,A,a,a@mit.edu,A Company,TRUE,FALSE,FALSE,FALSE,FALSE
+2,B,b,b@mit.edu,B Company,FALSE,TRUE,FALSE,FALSE,FALSE
+3,C,c,c@mit.edu,C Company,FALSE,FALSE,TRUE,FALSE,FALSE
+4,D,d,d@mit.edu,D Company,FALSE,FALSE,FALSE,TRUE,FALSE
+5,E,e,e@mit.edu,E Company,FALSE,FALSE,FALSE,FALSE,TRUE
+6,F,f,f@mit.edu,F Company,TRUE,TRUE,FALSE,FALSE,FALSE
+7,G,g,g@mit.edu,G Company,FALSE,TRUE,TRUE,FALSE,FALSE
+8,H,h,h@mit.edu,H Company,FALSE,FALSE,TRUE,TRUE,FALSE
+9,I,i,i@mit.edu,I Company,FALSE,FALSE,FALSE,TRUE,TRUE
+10,J,j,j@mit.edu,J Company,TRUE,TRUE,TRUE,TRUE,TRUE
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;contents_text&lt;/code&gt;はpythonスクリプト内で定義しておく。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-Python&#34;&gt;## initialize contents
+contents_text = {&#39;1&#39;: &amp;quot;content A&amp;quot;,
+                 &#39;2&#39;: &amp;quot;content B&amp;quot;,
+                 &#39;3&#39;: &amp;quot;content C&amp;quot;,
+                 &#39;4&#39;: &amp;quot;content D&amp;quot;,
+                 &#39;5&#39;: &amp;quot;content E&amp;quot;}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;こうすることで、csvファイルに基づいてメールを送信する機能が実装出来る。&lt;/p&gt;
+
+&lt;p&gt;内容を確認せずに送信できてしまうのもどうかと思ったので、&lt;code&gt;dry-run&lt;/code&gt;機能も実装済み。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-Text&#34;&gt;$ python generate_txt.py --dry-run True
+
+------------------------------Message ID:    1------------------------------
+To:            a@mit.edu
+Title:         test subject
+
+------------------------------------------------------------
+Message:
+
+Dear A, A Company
+
+Thank you for registering our event, tomorrow.
+
+This is a reminder to everyone about the upcoming conference call, this Friday.
+
+The deail of the event are shown in the following url.
+
+[EVENT DETAIL]
+http://tstomoki.github.io/
+
+[NOTES]
+1: content A
+
+--
+tstomoki
+Web  : http://tstomoki.github.io/
+Mail : tstomoki4@gmail.com
+
+
+
+------------------------------------------------------------
+
+------------------------------Message ID:    2------------------------------
+To:            b@mit.edu
+Title:         test subject
+
+------------------------------------------------------------
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;sourceはこちらに置いとくので是非使ってみてください。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/tstomoki/multiple_mail_sender&#34;&gt;multiple_mail_sender/GitHub&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;拡張機能とか大歓迎ですのでプルリクとか投げてやってください。&lt;/p&gt;
+
+&lt;p&gt;それでは！&lt;/p&gt;
+</description>
+        </item>
+      
     
       
     
@@ -45,7 +141,7 @@ $ hugo -d pages
 $ cd pages
 $ git add .
 $ git commit -m &amp;quot;commit message&amp;quot;
-$ git push origin master
+$ git push pages master
 &lt;/code&gt;&lt;/pre&gt;
 </description>
         </item>

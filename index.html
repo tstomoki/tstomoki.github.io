@@ -11,9 +11,9 @@
     <meta property="og:url" content="http://tstomoki.github.io">
     <meta property="og:title" content="tstomoki">
     
-    <meta property="og:description" content="About Me Basic Infomation Name: Tomoki Saito Born on Nov. 29th, 1990 Contact &amp; SNS Email: tstomoki4@gmail.com Github: https://github.com/tstomoki Facebook: https://www.facebook.com/tomokis2 Twitter: https://twitter.com/tstomoki Job Now I&rsquo;m a graduate student in master course and belong to Design Engineering Laboratory in the University of Tokyo. Summary Have comunication skills to deal with people from a diverse range of backgrounds and cultures. Self motivated with the ability to work well individually or as part of a highly energetic team.">
+    <meta property="og:description" content="イベントの参加者にリマインドを送るときに少し大変だったのでスクリプト書いたときのお話。 イベントの予約内容によってコンテントが少し変わるところがめんどくさかった。 まず、GmailのSMTPサーバにsmtplibを使ってログインできるらしいので、その機能を使ってメールを送信する。 その辺の実装は、この辺を見ながらやってみたら上手くいった。とりあえず、添付ファイルとかは基本的になかったので、MIMEとかは後回し。 今後需要があれば考慮していく感じで。 メールの内容については、こんな感じのcsvファイルを作成して、予約内容毎にBooleanでcontentsを指定するようにした。 id,name,name_kana,mail,company,1,2,3,4,5 1,A,a,a@mit.edu,A Company,TRUE,FALSE,FALSE,FALSE,FALSE 2,B,b,b@mit.edu,B Company,FALSE,TRUE,FALSE,FALSE,FALSE 3,C,c,c@mit.edu,C Company,FALSE,FALSE,TRUE,FALSE,FALSE 4,D,d,d@mit.edu,D Company,FALSE,FALSE,FALSE,TRUE,FALSE 5,E,e,e@mit.edu,E Company,FALSE,FALSE,FALSE,FALSE,TRUE 6,F,f,f@mit.edu,F Company,TRUE,TRUE,FALSE,FALSE,FALSE 7,G,g,g@mit.edu,G Company,FALSE,TRUE,TRUE,FALSE,FALSE 8,H,h,h@mit.edu,H Company,FALSE,FALSE,TRUE,TRUE,FALSE 9,I,i,i@mit.edu,I Company,FALSE,FALSE,FALSE,TRUE,TRUE 10,J,j,j@mit.edu,J Company,TRUE,TRUE,TRUE,TRUE,TRUE contents_textはpythonスクリプト内で定義しておく。 ## initialize contents contents_text = {&#39;1&#39;: &quot;content A&quot;, &#39;2&#39;: &quot;content B&quot;, &#39;3&#39;: &quot;content C&quot;, &#39;4&#39;: &quot;content D&quot;, &#39;5&#39;: &quot;content E&quot;} こうすることで、csvファイルに基づいてメールを送信する機能が実装出来る。 内容を確認せずに送信できてしまうのもどうかと思ったので、dry-run機能も実装済み。 $ python generate_txt.py --dry-run True ------------------------------Message ID: 1------------------------------ To: a@mit.edu Title: test subject ------------------------------------------------------------ Message: Dear A, A Company Thank you for registering our event, tomorrow.">
     
-    <meta property="og:image" content="http://tstomoki.github.io/images/chocola.jpg">
+    <meta property="og:image" content="http://tstomoki.github.io/images/gmail_python.png">
     
     
     
@@ -64,6 +64,28 @@
         
         
         
+        <div class="col-sm-6">
+          <article>
+            <a href="http://tstomoki.github.io/blog/%E4%BB%BB%E6%84%8F%E3%81%AEgmail%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%8B%E3%82%89%E5%A4%A7%E9%87%8F%E3%81%AE%E3%83%A1%E3%83%BC%E3%83%AB%E3%82%92%E9%80%81%E3%82%8B%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88%E3%82%92python%E3%81%A7%E6%9B%B8%E3%81%84%E3%81%A6%E3%81%BF%E3%81%9F" class="post post-topix">
+              <header class="eyecatch text-center">
+                <img src="/images/gmail_python.png" alt="eyecatch">
+              </header>
+              <div class="date text-center">
+                <span>Sun, Oct 25, 2015</span>
+              </div>
+              <h2 class="title">任意のGmailアカウントから大量のメールを送るスクリプトをPythonで書いてみた</h2>
+              <div class="summary">
+                イベントの参加者にリマインドを送るときに少し大変だったのでスクリプト書いたときのお話。 イベントの予約内容によってコンテントが少し変わるところがめんどくさかった。 まず、GmailのSMTPサーバにsmtplibを使ってログインできるらしいので、その機能を使ってメールを送信する。 その辺の実装は、この辺を見ながらやってみたら上手くいった。とりあえず、添付ファイルとかは基本的になかったので、MIMEとかは後回し。 今後需要があれば考慮していく感じで。 メールの内容については、こんな感じのcsvファイルを作成して、予約内容毎にBooleanでcontentsを指定するようにした。 id,name,name_kana,mail,company,1,2,3,4,5 1,A,a,a@mit.edu,A Company,TRUE,FALSE,FALSE,FALSE,FALSE 2,B,b,b@mit.edu,B Company,FALSE,TRUE,FALSE,FALSE,FALSE 3,C,c,c@mit.edu,C Company,FALSE,FALSE,TRUE,FALSE,FALSE 4,D,d,d@mit.edu,D Company,FALSE,FALSE,FALSE,TRUE,FALSE 5,E,e,e@mit.edu,E Company,FALSE,FALSE,FALSE,FALSE,TRUE 6,F,f,f@mit.edu,F Company,TRUE,TRUE,FALSE,FALSE,FALSE 7,G,g,g@mit.edu,G Company,FALSE,TRUE,TRUE,FALSE,FALSE 8,H,h,h@mit.edu,H Company,FALSE,FALSE,TRUE,TRUE,FALSE 9,I,i,i@mit.edu,I Company,FALSE,FALSE,FALSE,TRUE,TRUE 10,J,j,j@mit.edu,J Company,TRUE,TRUE,TRUE,TRUE,TRUE contents_textはpythonスクリプト内で定義しておく。 ## initialize contents contents_text = {'1': &quot;content A&quot;, '2': &quot;content B&quot;, '3': &quot;content C&quot;, '4': &quot;content D&quot;, '5': &quot;content E&quot;} こうすることで、csvファイルに基づいてメールを送信する機能が実装出来る。 内容を確認せずに送信できてしまうのもどうかと思ったので、dry-run機能も実装済み。 $ python generate_txt.py --dry-run True ------------------------------Message ID: 1------------------------------ To: a@mit.edu Title: test subject ------------------------------------------------------------ Message: Dear A, A Company Thank you for registering our event, tomorrow.
+              </div>
+            </a>
+          </article>
+        </div>
+        
+        
+        
+        
+        
+        
         
         
         <div class="col-sm-6">
@@ -77,7 +99,7 @@
               </div>
               <h2 class="title">なんとなくportfolioみたいなのが欲しかったので、GitHub Pages&#43;Hugo&#43;CircleCIでBlog公開してみた</h2>
               <div class="summary">
-                主にportfolioが欲しかったという目的でこのページを作ってみた。 自分のサイトが欲しいとは前々から思っていたけど、ドメイン取るのとかサーバ環境構築とかめんどくさかった。 そのタイミングでGithubでタダでページ作るってなっていたので作ってみました。 基本的に、Hugo で静的サイト出力して、Github Pagesに反映するときにCircle CI使ってる感じ。 参照先はここ 画像を挿入するときに色々templateを弄ってしまったけどこれであってるのだろうか…。 まぁ、今後困ったら調整していく感じでいいか。 ということで、Github Pagesいいすね！ pushするだけで記事を更新出来るところがエンジニアっぽい！ とりあえず、記事を作成して更新するコマンドをメモ代わりに書いときます。 $ hugo new post/article-title.md ...(記事編集) $ hugo undraft content/post/article-title.md $ hugo -d pages $ cd pages $ git add . $ git commit -m &quot;commit message&quot; $ git push origin master
+                主にportfolioが欲しかったという目的でこのページを作ってみた。 自分のサイトが欲しいとは前々から思っていたけど、ドメイン取るのとかサーバ環境構築とかめんどくさかった。 そのタイミングでGithubでタダでページ作るってなっていたので作ってみました。 基本的に、Hugo で静的サイト出力して、Github Pagesに反映するときにCircle CI使ってる感じ。 参照先はここ 画像を挿入するときに色々templateを弄ってしまったけどこれであってるのだろうか…。 まぁ、今後困ったら調整していく感じでいいか。 ということで、Github Pagesいいすね！ pushするだけで記事を更新出来るところがエンジニアっぽい！ とりあえず、記事を作成して更新するコマンドをメモ代わりに書いときます。 $ hugo new post/article-title.md ...(記事編集) $ hugo undraft content/post/article-title.md $ hugo -d pages $ cd pages $ git add . $ git commit -m &quot;commit message&quot; $ git push pages master
               </div>
             </a>
           </article>
@@ -147,10 +169,19 @@ Rails, Python, Cとかを主に使う。
       <a href="http://tstomoki.github.io/tags/development">development</a>
       
       
+      <a href="http://tstomoki.github.io/tags/excel">excel</a>
+      
+      
       <a href="http://tstomoki.github.io/tags/github-pages">github-pages</a>
       
       
+      <a href="http://tstomoki.github.io/tags/gmail">gmail</a>
+      
+      
       <a href="http://tstomoki.github.io/tags/hugo">hugo</a>
+      
+      
+      <a href="http://tstomoki.github.io/tags/python">python</a>
       
     </div>
     

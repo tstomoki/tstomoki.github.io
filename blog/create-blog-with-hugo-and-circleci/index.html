@@ -10,7 +10,7 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="なんとなくportfolioみたいなのが欲しかったので、GitHub Pages&#43;Hugo&#43;CircleCIでBlog公開してみた | tstomoki">
     <meta property="og:url" content="http://tstomoki.github.io/blog/create-blog-with-hugo-and-circleci">
-    <meta property="og:description" content="主にportfolioが欲しかったという目的でこのページを作ってみた。 自分のサイトが欲しいとは前々から思っていたけど、ドメイン取るのとかサーバ環境構築とかめんどくさかった。 そのタイミングでGithubでタダでページ作るってなっていたので作ってみました。 基本的に、Hugo で静的サイト出力して、Github Pagesに反映するときにCircle CI使ってる感じ。 参照先はここ 画像を挿入するときに色々templateを弄ってしまったけどこれであってるのだろうか…。 まぁ、今後困ったら調整していく感じでいいか。 ということで、Github Pagesいいすね！ pushするだけで記事を更新出来るところがエンジニアっぽい！ とりあえず、記事を作成して更新するコマンドをメモ代わりに書いときます。 $ hugo new post/article-title.md ...(記事編集) $ hugo undraft content/post/article-title.md $ hugo -d pages $ cd pages $ git add . $ git commit -m &quot;commit message&quot; $ git push origin master">
+    <meta property="og:description" content="主にportfolioが欲しかったという目的でこのページを作ってみた。 自分のサイトが欲しいとは前々から思っていたけど、ドメイン取るのとかサーバ環境構築とかめんどくさかった。 そのタイミングでGithubでタダでページ作るってなっていたので作ってみました。 基本的に、Hugo で静的サイト出力して、Github Pagesに反映するときにCircle CI使ってる感じ。 参照先はここ 画像を挿入するときに色々templateを弄ってしまったけどこれであってるのだろうか…。 まぁ、今後困ったら調整していく感じでいいか。 ということで、Github Pagesいいすね！ pushするだけで記事を更新出来るところがエンジニアっぽい！ とりあえず、記事を作成して更新するコマンドをメモ代わりに書いときます。 $ hugo new post/article-title.md ...(記事編集) $ hugo undraft content/post/article-title.md $ hugo -d pages $ cd pages $ git add . $ git commit -m &quot;commit message&quot; $ git push pages master">
     
     <meta property="og:image" content="http://tstomoki.github.io/images/initial_logos.png">
     
@@ -93,7 +93,7 @@ $ hugo -d pages
 $ cd pages
 $ git add .
 $ git commit -m &quot;commit message&quot;
-$ git push origin master
+$ git push pages master
 </code></pre>
 
       </div>
@@ -136,6 +136,12 @@ $ git push origin master
 
               <ul id="related-posts">
                 
+                
+                
+                
+                
+                
+                <li><a href="http://tstomoki.github.io/blog/%E4%BB%BB%E6%84%8F%E3%81%AEgmail%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%8B%E3%82%89%E5%A4%A7%E9%87%8F%E3%81%AE%E3%83%A1%E3%83%BC%E3%83%AB%E3%82%92%E9%80%81%E3%82%8B%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88%E3%82%92python%E3%81%A7%E6%9B%B8%E3%81%84%E3%81%A6%E3%81%BF%E3%81%9F">任意のGmailアカウントから大量のメールを送るスクリプトをPythonで書いてみた</a></li>
                 
                 
                 
@@ -241,10 +247,19 @@ Rails, Python, Cとかを主に使う。
       <a href="http://tstomoki.github.io/tags/development">development</a>
       
       
+      <a href="http://tstomoki.github.io/tags/excel">excel</a>
+      
+      
       <a href="http://tstomoki.github.io/tags/github-pages">github-pages</a>
       
       
+      <a href="http://tstomoki.github.io/tags/gmail">gmail</a>
+      
+      
       <a href="http://tstomoki.github.io/tags/hugo">hugo</a>
+      
+      
+      <a href="http://tstomoki.github.io/tags/python">python</a>
       
     </div>
     
