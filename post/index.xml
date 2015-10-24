@@ -12,10 +12,10 @@
       
         <item>
           <title>任意のGmailアカウントから大量のメールを送るスクリプトをPythonで書いてみた</title>
-          <link>http://tstomoki.github.io/blog/%E4%BB%BB%E6%84%8F%E3%81%AEgmail%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%8B%E3%82%89%E5%A4%A7%E9%87%8F%E3%81%AE%E3%83%A1%E3%83%BC%E3%83%AB%E3%82%92%E9%80%81%E3%82%8B%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88%E3%82%92python%E3%81%A7%E6%9B%B8%E3%81%84%E3%81%A6%E3%81%BF%E3%81%9F</link>
+          <link>http://tstomoki.github.io/blog/multiple-gmail-sender</link>
           <pubDate>Sun, 25 Oct 2015 01:51:55 JST</pubDate>
           <author>Tomoki Saito</author>
-          <guid>http://tstomoki.github.io/blog/%E4%BB%BB%E6%84%8F%E3%81%AEgmail%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%8B%E3%82%89%E5%A4%A7%E9%87%8F%E3%81%AE%E3%83%A1%E3%83%BC%E3%83%AB%E3%82%92%E9%80%81%E3%82%8B%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88%E3%82%92python%E3%81%A7%E6%9B%B8%E3%81%84%E3%81%A6%E3%81%BF%E3%81%9F</guid>
+          <guid>http://tstomoki.github.io/blog/multiple-gmail-sender</guid>
           <description>&lt;p&gt;イベントの参加者にリマインドを送るときに少し大変だったのでスクリプト書いたときのお話。&lt;/p&gt;
 
 &lt;p&gt;イベントの予約内容によってコンテントが少し変わるところがめんどくさかった。&lt;/p&gt;
